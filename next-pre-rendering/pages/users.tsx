@@ -1,3 +1,4 @@
+import User from '@/components/user'
 import React from 'react'
 interface User {
   id: number,
@@ -9,9 +10,7 @@ const UserList = ({users}: User[]) => {
   {
     users.map((user: User) => {
       return (<div key={user.id}>
-        <p>{user.name}</p>
-        <p>{user.email}</p>
-
+<User user={user}/>
       </div>)
     })
   }</>

@@ -9,8 +9,8 @@ const PostDetail = () => {
     "body": ""
 });
 const [comments, setComments] = useState([{
-  "postId": -1,
-  "id": -1,
+  "postId": null,
+  "id": null,
   "name": "",
   "email": "",
   "body": ""

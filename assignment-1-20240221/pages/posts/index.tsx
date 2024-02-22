@@ -10,7 +10,8 @@ const PostsPage = () => {
     setPosts(data);
   }
 
-  return (<><button onClick={fetchPosts}>Load Posts</button>{
+  return (<><button onClick={fetchPosts}>Load Posts</button>
+  {
     posts.map((post) => {
         return (
             <div key={post.id}><Link href={`/posts/${post.id}`}>

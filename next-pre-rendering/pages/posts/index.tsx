@@ -1,28 +1,31 @@
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
-const PostsPage = ({ posts }) => {
+
+const PostList = ({ posts }) => {
   return (
     <>
+      <div>
+        <h1>List of Posts</h1>
+      </div>
       {posts.map((post) => {
         return (
           <div key={post.id}>
-            <Link href={`/posts/${post.id}`}>
-              {post.id} {post.title}
+            <Link href={`/posts/${post.id}`} passHref>
+              {/* When we have a child that is not an anchored tag */}{" "}
+              <h2>
+                {post.id} {post.title}
+              </h2>
+              <p>{post.body}</p>
+              <hr />
             </Link>
-            <hr />
           </div>
         );
       })}
     </>
   );
 };
-export default PostsPage;
+
+export default PostList;
 
 export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -30,7 +33,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: data,
+      posts: data.slice(0, 3),
     },
   };
 }

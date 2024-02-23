@@ -1,18 +1,15 @@
-import User from "@/components/user";
+import UserDetail from "@/components/user";
 import React from "react";
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
-const UserList = ({ users }: { users: User[] }) => {
+import { User, UserProps } from "@/components/user";
+
+const UserList = ({ users }) => {
   return (
     <>
       <h1>List of users</h1>
-      {users.map((user: User) => {
+      {users.map((user: User) => { 
         return (
           <div key={user.id}>
-            <User user={user} />
+            <UserDetail user={user} />
           </div>
         );
       })}

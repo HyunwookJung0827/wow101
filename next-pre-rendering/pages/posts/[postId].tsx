@@ -11,20 +11,28 @@ const Post = ({ post }) => {
   );
 };
 export default Post;
-
-export async function getStaticPaths(context) {
+export async function getStaticPaths() {
+    return {
+        paths: [
+            { params: { postId: "1" } },
+            { params: { postId: "2" } },
+            { params: { postId: "3" } },
+        ],
+        // If fallback is false, then any paths not returned by getStaticPaths will result in a 404 page.
+        fallback: false,
+        };
+}
+export async function getStaticProps(context) {
   const { params } = context;
+  // Basically saying that we as a developer pre-decide which pages to pre-render
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${params.postId}`
   );
   const data = await response.json();
 
   return {
-    paths: [
-      {
-        params: { postId: data.id.toString() },
-      },
-    ],
-    fallback: false,
+    props: {
+      post: data,
+    },
   };
 }

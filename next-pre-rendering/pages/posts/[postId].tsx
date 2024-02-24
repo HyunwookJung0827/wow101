@@ -11,16 +11,28 @@ const Post = ({ post }) => {
   );
 };
 export default Post;
+// feasible solution we would want is an array of 100 objects where each object contains a params key which in turn contains an id key.
+// We can reuse api/posts to get all the post Ids and then use getStaticPaths to pre-render all the pages.
 export async function getStaticPaths() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const data = await response.json();
+
+  const paths = data.map((post) => {
     return {
-        paths: [
-            { params: { postId: "1" } },
-            { params: { postId: "2" } },
-            { params: { postId: "3" } },
-        ],
-        // If fallback is false, then any paths not returned by getStaticPaths will result in a 404 page.
-        fallback: false,
-        };
+      params: { postId: `${post.id}` },
+    };
+  
+  })
+  return {
+    // paths: [
+    //   { params: { postId: "1" } },
+    //   { params: { postId: "2" } },
+    //   { params: { postId: "3" } },
+    // ],
+    paths,
+    // If fallback is false, then any paths not returned by getStaticPaths will result in a 404 page.
+    fallback: false,
+  };
 }
 export async function getStaticProps(context) {
   const { params } = context;

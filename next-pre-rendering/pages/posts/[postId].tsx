@@ -21,8 +21,8 @@ export async function getStaticPaths() {
     return {
       params: { postId: `${post.id}` },
     };
-  
   })
+  
   return {
     // paths: [
     //   { params: { postId: "1" } },

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
 interface Post {
   id: number;
   title: string;

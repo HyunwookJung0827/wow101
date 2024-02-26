@@ -1,4 +1,4 @@
-import { posts } from "@/data/posts";
+
 export default function handler(req, res) {
     const {postId} = req.query;
     const post = posts.find( post => post.id === parseInt(postId))

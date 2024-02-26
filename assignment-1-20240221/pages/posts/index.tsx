@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import React from "react";
 interface Post {
@@ -24,7 +25,7 @@ const PostsPage = ({ posts }) => {
 export default PostsPage;
 
 export async function getStaticProps() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const response = await fetch("/api/posts");
   const data = await response.json();
 
   return {

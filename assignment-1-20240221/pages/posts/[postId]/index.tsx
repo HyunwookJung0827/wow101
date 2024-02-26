@@ -42,6 +42,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
+  // You should not call an api route for pre-rendering
   const { params } = context;
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${params.postId}`

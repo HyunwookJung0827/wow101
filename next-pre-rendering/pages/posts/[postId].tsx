@@ -1,6 +1,12 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 const Post = ({ post }) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <>
       <h1>
@@ -17,21 +23,21 @@ export async function getStaticPaths() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await response.json();
 
-  const paths = data.map((post) => {
-    return {
-      params: { postId: `${post.id}` },
-    };
-  })
+  // const paths = data.map((post) => {
+  //   return {
+  //     params: { postId: `${post.id}` },
+  //   };
+  // })
   
   return {
-    // paths: [
-    //   { params: { postId: "1" } },
-    //   { params: { postId: "2" } },
-    //   { params: { postId: "3" } },
-    // ],
-    paths,
+    paths: [
+      { params: { postId: "1" } },
+      { params: { postId: "2" } },
+      { params: { postId: "3" } },
+    ],
+    // paths,
     // If fallback is false, then any paths not returned by getStaticPaths will result in a 404 page.
-    fallback: false,
+    fallback: "blocking",
   };
 }
 export async function getStaticProps(context) {

@@ -1,9 +1,14 @@
 import Todo from "@/components/Todo";
 import React from "react";
+import Head from "next/head";
 
 const TodoDetail = ({ todo }) => {
+  
   return (
     <>
+      <Head>
+        <title>{todo.title.length <= 20 ? todo.title : todo.title.slice(0, 19) + '...'} | My Custom website</title>
+      </Head>
       <div>TodoDetail</div>
       <Todo todo={todo} />
     </>

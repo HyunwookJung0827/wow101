@@ -1,6 +1,14 @@
 import React from "react";
 
-const Todo = ({ todo }) => {
+export interface TodoProps {
+  todo: {
+    id: number;
+    title: string;
+    completed: boolean;
+  };
+}
+
+const Todo: React.FC<TodoProps> = ({ todo }) => {
   return (
     <>
       <div className={todo.completed ? "bg-blue-400" : "bg-red-400"}>
